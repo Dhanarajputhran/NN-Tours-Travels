@@ -1,0 +1,525 @@
+/* --------------------
+   1. Reset & Base Setup
+-------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth; /* Enables smooth scroll on anchor links */
+}
+
+body {
+  background-color: #fef7ed; /* Light beige background for entire site */
+  color: #0e3b1d; /* Primary text color */
+}
+
+/* --------------------
+   2. Header (Logo + Navigation)
+-------------------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #cfd2c2;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo Style */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Desktop Navigation Links */
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+/* Nav Link Styles */
+nav a {
+  text-decoration: none;
+  color: #0e3b1d;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #2a4c2d;
+}
+
+/* Active Nav Link */
+nav a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #0e3b1d;
+}
+
+/* Mobile Menu Button (Hamburger) */
+.menu-btn {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0e3b1d;
+}
+
+/* --------------------
+   3. Hero Section
+-------------------- */
+.hero-slider {
+  position: relative;
+  width: 50%;
+  min-width: 300px;
+  overflow: hidden;
+}
+
+.hero-slider img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slider img.active {
+  opacity: 1;
+  position: relative;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  flex-wrap: wrap;
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 10px;
+  min-width: 300px;
+}
+
+.hero-text {
+  width: 45%;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.hero-text h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #374532;
+}
+
+.hero-text button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: 2px solid #0e3b1d;
+  border-radius: 30px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hero-text button:hover {
+  background-color: #0e3b1d;
+  color: white;
+}
+
+/* --------------------
+   4. About Section
+-------------------- */
+.about {
+  padding: 200px 200px;
+}
+
+.about-text p {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.about-content img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.about-content p {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* --------------------
+   5. Tour Selector Section (Dropdowns + Buttons)
+-------------------- */
+.tour-selector {
+  padding: 200px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+select, button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #0e3b1d;
+  color: white;
+  cursor: pointer;
+  width: 120px;
+}
+
+/* --------------------
+   6. Tour Image Gallery Grid
+-------------------- */
+.gallery-container {
+  margin-top: 40px;
+}
+
+.place-block {
+  margin-bottom: 40px;
+}
+
+.place-block h2 {
+  margin-bottom: 15px;
+  color: #0e3b1d;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.image-grid img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* --------------------
+   7. Multi-Checkbox List for Places
+-------------------- */
+.checkbox-list {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.checkbox-list label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* --------------------
+   8. Fade-in Animation on Scroll
+-------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------
+   9. Responsive Design
+-------------------- */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #cfd2c2;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    gap: 20px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .hero,
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero img,
+  .hero-text,
+  .about-content p {
+    width: 100%;
+  }
+}
+
+/* -------------------- Contact Section -------------------- */
+.contact-section {
+  padding: 60px 40px;
+  background-color: #fef7ed;
+  color: #0e3b1d;
+}
+
+.contact-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.contact-info a {
+  color: #0e3b1d;
+  text-decoration: underline;
+}
+
+.contact-info .map-box {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contact-form button {
+  background-color: #0e3b1d;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #1e5128;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-form,
+  .contact-info {
+    width: 100%;
+  }
+}
+
+/* -------------------- success message -------------------- */
+#successMsg {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 24px;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #25D366; /* WhatsApp Green or custom highlight */
+}
+
+/* Optional: Specific Colors (optional override) */
+.social-icons a[aria-label="Instagram"]:hover {
+  color: #E1306C;
+}
+
+.social-icons a[aria-label="Facebook"]:hover {
+  color: #1877F2;
+}
+
+
+.gallery-section {
+  padding: 60px 20px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.gallery-section h2 {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.gallery-thumb {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-thumb:hover {
+  transform: scale(1.03);
+}
+
+/* Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  padding: 0 20px;
+  user-select: none;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
